@@ -1,0 +1,304 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0A2D56;      /* Azul marino oscuro - Principal */
+  --color-secondary: #0EA1B3;    /* Cyan/Turquesa - Acento */
+  --color-gray-light: #BFC5CC;   /* Gris claro */
+  --color-gray-bg: #E7EAED;      /* Gris muy claro - Fondos */
+  --color-dark: #333D47;         /* Gris oscuro - Textos */
+  --color-white: #FFFFFF;
+
+  --font-sans: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  --font-heading: 'Space Grotesk', 'Eurostile', sans-serif;
+}
+
+/* Custom utility styles */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+:root {
+  --bg-app: #f1f5f9;
+  --bg-nav: rgba(255, 255, 255, 0.75);
+  --bg-card: rgba(255, 255, 255, 0.38);
+  --bg-inner: rgba(15, 23, 42, 0.03);
+  --border-card: rgba(255, 255, 255, 0.55);
+  --border-inner: rgba(15, 23, 42, 0.07);
+  --shadow-card: 0 8px 32px 0 rgba(10, 45, 86, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.55);
+  --shadow-card-hover: 0 16px 48px 0 rgba(10, 45, 86, 0.12), inset 0 1px 0 0 rgba(255, 255, 255, 0.7);
+  --text-main: #333d47;
+  --text-primary-color: #0A2D56;
+  --text-muted: #64748b;
+  --border-nav: rgba(15, 23, 42, 0.08);
+}
+
+.dark {
+  --bg-app: #060913;
+  --bg-nav: rgba(10, 15, 30, 0.75);
+  --bg-card: rgba(15, 22, 42, 0.35);
+  --bg-inner: rgba(255, 255, 255, 0.05);
+  --border-card: rgba(255, 255, 255, 0.12);
+  --border-inner: rgba(255, 255, 255, 0.06);
+  --shadow-card: 0 12px 40px 0 rgba(0, 0, 0, 0.4), inset 0 1px 0 0 rgba(255, 255, 255, 0.15);
+  --shadow-card-hover: 0 20px 48px 0 rgba(0, 0, 0, 0.55), inset 0 1px 0 0 rgba(255, 255, 255, 0.22);
+  --text-main: #f1f5f9;
+  --text-primary-color: #38bdf8;
+  --text-muted: #94a3b8;
+  --border-nav: rgba(255, 255, 255, 0.08);
+}
+
+/* Custom utility styles */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Glassmorphism card styles */
+.bg-white, .glass-card {
+  background-color: var(--bg-card) !important;
+  backdrop-filter: blur(20px) saturate(120%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(120%) !important;
+  border: 1px solid var(--border-card) !important;
+  box-shadow: var(--shadow-card) !important;
+  border-radius: 24px !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  color: var(--text-main) !important;
+}
+
+.bg-white:hover, .glass-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: var(--shadow-card-hover) !important;
+  border-color: rgba(14, 161, 179, 0.5) !important;
+}
+
+/* Reset glassmorphism layout for small elements and icons inside cards */
+.bg-white.p-2, .bg-white.p-1, .bg-white.p-1.5, .bg-white.w-8, .bg-white.w-10, .bg-white.h-8, .bg-white.h-10, .bg-white.rounded, .bg-white.rounded-md, .bg-white.inline-block {
+  background-color: var(--bg-inner) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border: 1px solid var(--border-inner) !important;
+  box-shadow: none !important;
+  border-radius: 8px !important;
+  transform: none !important;
+  transition: none !important;
+}
+.bg-white.p-2:hover, .bg-white.p-1:hover, .bg-white.p-1.5:hover, .bg-white.w-8:hover, .bg-white.w-10:hover, .bg-white.rounded:hover, .bg-white.rounded-md:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  border-color: var(--border-inner) !important;
+}
+
+/* Prevent layout breaking for subnavigation fullwidth */
+nav.no-print.bg-white {
+  background-color: var(--bg-nav) !important;
+  backdrop-filter: blur(16px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(140%) !important;
+  border-bottom: 1px solid var(--border-nav) !important;
+  border-radius: 0px !important;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.03) !important;
+  transform: none !important;
+  margin: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+nav.no-print.bg-white:hover {
+  transform: none !important;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.03) !important;
+  border-color: var(--border-nav) !important;
+}
+
+/* Highlight borders & pl-4 styling */
+.border-l-4.border-secondary, .border-l-4.border-secondary.pl-4 {
+  border-left-width: 6px !important;
+  border-left-color: #0EA1B3 !important;
+}
+
+/* Inner block backgrounds */
+.bg-gray-bg\/20, .bg-gray-bg\/30, .bg-gray-bg\/40 {
+  background-color: var(--bg-inner) !important;
+  border: 1px solid var(--border-inner) !important;
+  border-radius: 8px !important;
+}
+
+/* Custom text alignments & adaptive highlights */
+.text-dark {
+  color: var(--text-main) !important;
+}
+.text-dark\/70 {
+  color: var(--text-muted) !important;
+}
+.text-dark\/80 {
+  color: var(--text-muted) !important;
+}
+.text-dark\/90 {
+  color: var(--text-main) !important;
+}
+.text-dark\/95 {
+  color: var(--text-main) !important;
+}
+.text-gray-500 {
+  color: var(--text-muted) !important;
+}
+.text-gray-400 {
+  color: var(--text-muted) !important;
+}
+
+/* Primary text adaptive override */
+.text-primary {
+  color: var(--text-primary-color) !important;
+}
+
+/* Progress bar backgrounds */
+.w-full.bg-gray-200.h-1.5 {
+  background-color: var(--bg-inner) !important;
+}
+
+/* Inputs & Textareas adaptive cursor */
+input, textarea, select {
+  color: var(--text-main) !important;
+}
+.dark input, .dark textarea, .dark select {
+  color: #f1f5f9 !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Tables and list rows */
+.dark tr:hover {
+  background-color: rgba(14, 161, 179, 0.1) !important;
+}
+.dark th {
+  background-color: rgba(10, 45, 86, 0.8) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+.dark td {
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+.dark .border-b {
+  border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+}
+.dark .border-t {
+  border-top-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Custom styling for Lucide icons inside adaptive navigation */
+nav button {
+  font-family: 'Space Grotesk', sans-serif !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  color: var(--text-muted) !important;
+  transition: all 0.2s ease !important;
+}
+nav button:hover {
+  color: var(--text-primary-color) !important;
+}
+nav button.border-primary {
+  color: var(--text-primary-color) !important;
+  border-bottom-color: #0EA1B3 !important;
+  font-weight: 700 !important;
+}
+
+/* Hide print elements on screen */
+.page-tab {
+  display: none;
+}
+
+.page-tab.active {
+  display: block;
+}
+
+/* Standard scrollbars for cards and body */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-gray-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gray-light);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* PRINT LAYOUTS FOR CORPORATE BOARD PDF presentation */
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #333D47 !important;
+    font-size: 11pt !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  /* Show ALL pages stacked for printing with strict page-break divisions */
+  .page-tab {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    transform: none !important;
+    page-break-after: always;
+    margin-bottom: 4rem;
+    padding-top: 1rem;
+  }
+
+  .page-tab:last-child {
+    page-break-after: avoid;
+  }
+
+  /* Typography formatting for printed papers */
+  .print-title {
+    color: #0A2D56 !important;
+    border-bottom: 3px solid #0EA1B3 !important;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Card and visual indicator overrides */
+  .card-kpi {
+    border: 1px solid #BFC5CC !important;
+    border-left: 6px solid #0EA1B3 !important;
+    box-shadow: none !important;
+    background-color: #ffffff !important;
+    page-break-inside: avoid;
+  }
+
+  .bg-gradient-to-r, .bg-gradient-to-br, .bg-gradient-to-tr {
+    background-image: none !important;
+    background-color: #0A2D56 !important;
+    color: #ffffff !important;
+  }
+
+  .text-white {
+    color: #ffffff !important;
+  }
+
+  .text-secondary {
+    color: #0EA1B3 !important;
+  }
+
+  /* Table styling */
+  table {
+    page-break-inside: auto;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+}
