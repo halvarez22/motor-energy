@@ -20,7 +20,7 @@ import { Tecnica } from "./Tecnica";
 import { Financiera } from "./Financiera";
 import { Legal } from "./Legal";
 import { Galeria } from "./Galeria";
-import { Cierre } from "./Cierre";
+import { Contacto } from "./Contacto";
 
 interface PrintPreviewModalProps {
   isOpen: boolean;
@@ -82,7 +82,7 @@ export const PrintPreviewModal: React.FC<PrintPreviewModalProps> = ({
     { name: t.tab_financiera, component: <Financiera data={data} onChange={() => {}} isEditing={false} isDarkMode={false} language={language} /> },
     { name: t.tab_legal, component: <Legal data={data} onChange={() => {}} isEditing={false} language={language} /> },
     { name: t.tab_galeria, component: <Galeria data={data} onChange={() => {}} isEditing={false} language={language} /> },
-    { name: t.tab_cierre, component: <Cierre data={data} onChange={() => {}} isEditing={false} language={language} /> },
+    { name: t.tab_cierre, component: <Contacto data={data} onChange={() => {}} isEditing={false} language={language} /> },
   ];
 
   return (

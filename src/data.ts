@@ -992,7 +992,7 @@ export const uiTranslations: Record<string, Record<string, string>> = {
     tab_financiera: "Financiera",
     tab_legal: "Legal",
     tab_galeria: "Galería",
-    tab_cierre: "Cierre",
+    tab_cierre: "Contacto",
     
     // Inicio Tab
     exec_presentation: "Presentación Ejecutiva",
@@ -1059,8 +1059,8 @@ export const uiTranslations: Record<string, Record<string, string>> = {
     data_room: "Documentación Técnica y Estudios Disponibles (Data Room)",
     
     // Cierre Tab
-    cierre_title: "Conclusiones y Solicitud de Aprobación",
-    cierre_subtitle: "Hitos de ejecución, propuesta de valor y petición formal al Consejo",
+    cierre_title: "Canales de Contacto y Oficina",
+    cierre_subtitle: "Comuníquese directamente con los líderes del proyecto y descargue documentación técnica oficial.",
     formal_request: "Solicitud Formal de Acuerdo",
     request_board: "Petición al Honorable Consejo de Administración",
     execution_timeline: "Cronograma Crítico de Ejecución (Hitos Clave)",
@@ -1112,7 +1112,7 @@ export const uiTranslations: Record<string, Record<string, string>> = {
     tab_financiera: "Financial",
     tab_legal: "Legal",
     tab_galeria: "Gallery",
-    tab_cierre: "Closing",
+    tab_cierre: "Contact",
     
     // Inicio Tab
     exec_presentation: "Executive Presentation",
@@ -1179,8 +1179,8 @@ export const uiTranslations: Record<string, Record<string, string>> = {
     data_room: "Available Technical Documentation and Studies (Data Room)",
     
     // Cierre Tab
-    cierre_title: "Conclusions and Approval Request",
-    cierre_subtitle: "Execution milestones, value proposition and formal request to the Board",
+    cierre_title: "Contact Channels & Offices",
+    cierre_subtitle: "Communicate directly with project leaders and download official technical documentation.",
     formal_request: "Formal Agreement Request",
     request_board: "Petition to the Honorable Board of Directors",
     execution_timeline: "Critical Execution Schedule (Key Milestones)",
@@ -1232,7 +1232,7 @@ export const uiTranslations: Record<string, Record<string, string>> = {
     tab_financiera: "财务分析",
     tab_legal: "法律与合规",
     tab_galeria: "项目图库",
-    tab_cierre: "提请批准",
+    tab_cierre: "联系方式",
     
     // Inicio Tab
     exec_presentation: "执行报告",
@@ -1299,8 +1299,8 @@ export const uiTranslations: Record<string, Record<string, string>> = {
     data_room: "Data Room 现有技术论证与模拟报告清单",
     
     // Cierre Tab
-    cierre_title: "战略结论与投资决策表决提议",
-    cierre_subtitle: "关键工程时间节点、项目价值主张及致董事会正式表决提请",
+    cierre_title: "联系渠道与办事处",
+    cierre_subtitle: "直接与项目负责人沟通并下载官方技术文件。",
     formal_request: "正式表决议案",
     request_board: "呈报董事会表决请示",
     execution_timeline: "关键进度路线图（里程碑）",

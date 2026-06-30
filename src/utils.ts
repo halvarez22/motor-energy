@@ -41,7 +41,7 @@ export function generateExportHTML(data: PresentationData, lang: "es" | "en" | "
   const tabFinanciera = lang === "zh" ? "📊 财务" : lang === "en" ? "📊 Financial" : "📊 Financiera";
   const tabLegal = lang === "zh" ? "⚖️ 法律" : lang === "en" ? "⚖️ Legal" : "⚖️ Legal";
   const tabGaleria = lang === "zh" ? "📷 图库" : lang === "en" ? "📷 Gallery" : "📷 Galería";
-  const tabCierre = lang === "zh" ? "🏁 提请" : lang === "en" ? "🏁 Closing" : "🏁 Cierre";
+  const tabCierre = lang === "zh" ? "🏁 联系方式" : lang === "en" ? "🏁 Contact" : "🏁 Contacto";
 
   return `<!DOCTYPE html>
 <html lang="${lang}">
@@ -594,82 +594,105 @@ export function generateExportHTML(data: PresentationData, lang: "es" | "en" | "
       </div>
     </section>
 
-    <!-- SECCIÓN 6: CIERRE -->
+    <!-- SECCIÓN 6: CONTACTO -->
     <section id="tab-5" class="page-tab space-y-6 sm:space-y-8">
       <div class="border-l-4 border-secondary pl-4 pb-1">
-        <h2 class="font-heading text-xl sm:text-2xl font-bold text-primary print-title">Conclusiones y Solicitud de Aprobación</h2>
-        <p class="text-xs text-gray-500 font-medium">Hitos de ejecución, propuesta de valor y petición formal al Consejo</p>
+        <h2 class="font-heading text-xl sm:text-2xl font-bold text-primary print-title" id="doc-cierre-title">${lang === "zh" ? "📬 联系方式" : lang === "en" ? "📬 Contact Information" : "📬 Canales de Contacto"}</h2>
+        <p class="text-xs text-gray-500 font-medium" id="doc-cierre-subtitle">${lang === "zh" ? "直接与项目负责人沟通并下载官方技术文件。" : lang === "en" ? "Communicate directly with project leaders and download official technical documentation." : "Comuníquese directamente con los líderes del proyecto y descargue documentación técnica oficial."}</p>
       </div>
 
-      <!-- Conclusiones / Cards de Valor -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        ${data.values.map((v) => `
-          <div class="bg-white p-5 rounded-lg shadow-sm border border-gray-100 space-y-2 hover:-translate-y-1 transition-transform">
-            <span class="text-3xl block">${v.icon}</span>
-            <h3 class="editable font-heading text-sm font-bold text-primary uppercase" id="val-title-${v.id}" data-val-id="${v.id}" data-type="title">${v.title}</h3>
-            <p class="editable text-xs text-gray-500 leading-relaxed" id="val-desc-${v.id}" data-val-id="${v.id}" data-type="description">${v.description}</p>
-          </div>
-        `).join("")}
-      </div>
-
-      <!-- CTA Box -->
-      <div class="bg-gradient-to-r from-primary to-secondary text-white p-8 sm:p-12 rounded-xl shadow-lg relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:20px_20px]"></div>
-        <div class="relative z-10 max-w-4xl mx-auto text-center space-y-6">
-          <span class="inline-block px-3 py-1 text-[11px] font-bold uppercase tracking-widest bg-white/10 text-white border border-white/20 rounded-full">Solicitud Formal de Acuerdo</span>
-          <h2 class="font-heading text-xl sm:text-3xl font-extrabold tracking-tight">Petición al Honorable Consejo de Administración</h2>
-          <p class="editable text-sm sm:text-base text-gray-100 leading-relaxed whitespace-pre-wrap font-medium" id="doc-ctatext" data-field="ctaText">${data.ctaText}</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Información corporativa -->
+        <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 space-y-4">
+          <h3 class="font-heading text-sm font-bold text-primary uppercase flex items-center gap-2">🏢 ${lang === "zh" ? "联系渠道与办事处" : lang === "en" ? "Contact Channels & Offices" : "Canales de Contacto y Oficina"}</h3>
           
-          <div class="pt-2">
-            <button class="no-print bg-white text-primary font-heading font-extrabold text-sm uppercase px-8 py-3.5 rounded-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer">
-              ${data.ctaButtonText}
-            </button>
-          </div>
-        </div>
-      </div>
+          <div class="space-y-3 text-xs text-gray-600">
+            <div>
+              <span class="font-semibold block text-gray-400 uppercase tracking-wider text-[9px]">${lang === "zh" ? "办事处地址" : lang === "en" ? "Headquarters Address" : "Dirección Corporativa"}</span>
+              <p class="editable text-gray-800 font-medium mt-0.5" id="doc-address" data-field="address">${data.contact.address}</p>
+            </div>
+            
+            <div>
+              <span class="font-semibold block text-gray-400 uppercase tracking-wider text-[9px]">Email</span>
+              <p class="editable font-semibold text-secondary text-sm mt-0.5" id="doc-email" data-field="email">${data.contact.email}</p>
+            </div>
 
-      <!-- Timeline -->
-      <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 space-y-6">
-        <h3 class="font-heading text-md font-bold text-primary border-b border-gray-100 pb-2 flex items-center gap-2">
-          <span>📅</span> Cronograma Crítico de Ejecución (Hitos Clave)
-        </h3>
-        
-        <div class="relative pl-6 border-l-2 border-secondary space-y-6 sm:space-y-8 ml-3">
-          ${data.timeline.map((item) => `
-            <div class="relative">
-              <!-- Marker -->
-              <span class="absolute -left-[31px] top-0.5 bg-secondary text-primary font-heading text-[10px] font-extrabold px-1.5 py-0.5 rounded shadow border border-white flex items-center justify-center">${item.period}</span>
-              
-              <div class="bg-gray-bg/20 p-4 rounded border border-gray-100 ml-4 space-y-1">
-                <h4 class="editable text-sm font-bold text-primary font-heading" id="tl-title-${item.id}" data-tl-id="${item.id}" data-type="title">${item.title}</h4>
-                <p class="editable text-xs text-gray-500 leading-relaxed" id="tl-desc-${item.id}" data-tl-id="${item.id}" data-type="description">${item.description}</p>
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <span class="font-semibold block text-gray-400 uppercase tracking-wider text-[9px]">${lang === "zh" ? "电话" : lang === "en" ? "Phone" : "Teléfono"}</span>
+                <p class="editable text-gray-800 font-medium mt-0.5" id="doc-phone" data-field="phone">${data.contact.phone}</p>
+              </div>
+              <div>
+                <span class="font-semibold block text-gray-400 uppercase tracking-wider text-[9px]">${lang === "zh" ? "网站" : lang === "en" ? "Website" : "Sitio Web"}</span>
+                <p class="editable text-gray-800 font-medium mt-0.5" id="doc-web" data-field="web">${data.contact.web}</p>
               </div>
             </div>
-          `).join("")}
+          </div>
+        </div>
+
+        <!-- Mensaje de contacto express / Formulario en exportación -->
+        <div class="bg-gradient-to-br from-primary to-slate-900 text-white p-6 rounded-lg shadow-sm border border-slate-800 space-y-4">
+          <h3 class="font-heading text-sm font-bold text-secondary uppercase flex items-center gap-2">📩 ${lang === "zh" ? "极速商务咨询" : lang === "en" ? "EXPRESS INQUIRIES" : "CONSULTAS RÁPIDAS DE NEGOCIO"}</h3>
+          <p class="text-xs text-slate-300">${lang === "zh" ? "要安排极速视频会面或咨询投资细节，请直接致信或访问网站在线表格。" : lang === "en" ? "To schedule an express meeting or inquire about investment details, send us an email directly or submit your inquiry online." : "Para coordinar una llamada express o consultar sobre detalles de inversión, escriba directamente a nuestro correo oficial."}</p>
+          <div class="pt-2">
+            <a href="mailto:${data.contact.email}" class="inline-block bg-secondary text-primary text-xs font-bold uppercase tracking-wider px-5 py-2.5 rounded hover:bg-opacity-90 transition-colors">${lang === "zh" ? "联系我们" : lang === "en" ? "Get in Touch" : "Contactar Ahora"}</a>
+          </div>
         </div>
       </div>
 
-      <!-- Datos de Contacto / Pie de Página -->
-      <div class="bg-primary text-white p-6 sm:p-8 rounded-lg shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-        <div class="space-y-2">
+      <!-- Representantes -->
+      <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-100 space-y-4">
+        <h3 class="font-heading text-sm font-bold text-primary uppercase">👥 ${lang === "zh" ? "项目代表团队" : lang === "en" ? "Project Representatives" : "Representantes del Proyecto"}</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="p-3 bg-gray-50 rounded border border-gray-100/50 flex flex-col justify-between">
+            <div>
+              <h4 class="font-bold text-xs text-gray-800">Ing. Alejandro Ruiz</h4>
+              <p class="text-[10px] text-gray-500 font-medium">${lang === "zh" ? "首席开发官 / CDO" : lang === "en" ? "Chief Development Officer" : "Director de Desarrollo / CDO"}</p>
+            </div>
+            <p class="text-[10px] text-secondary font-semibold mt-2">a.ruiz@motorenergy.example.com</p>
+          </div>
+
+          <div class="p-3 bg-gray-50 rounded border border-gray-100/50 flex flex-col justify-between">
+            <div>
+              <h4 class="font-bold text-xs text-gray-800">Dra. Helena Vargas</h4>
+              <p class="text-[10px] text-gray-500 font-medium">${lang === "zh" ? "投资者关系经理" : lang === "en" ? "Investor Relations Manager" : "Relaciones con Inversores"}</p>
+            </div>
+            <p class="text-[10px] text-secondary font-semibold mt-2">h.vargas@motorenergy.example.com</p>
+          </div>
+
+          <div class="p-3 bg-gray-50 rounded border border-gray-100/50 flex flex-col justify-between">
+            <div>
+              <h4 class="font-bold text-xs text-gray-800">Abog. Carlos Mendoza</h4>
+              <p class="text-[10px] text-gray-500 font-medium">${lang === "zh" ? "法律与规划审批顾问" : lang === "en" ? "Legal & Permitting Counsel" : "Asesor Legal y Permisos"}</p>
+            </div>
+            <p class="text-[10px] text-secondary font-semibold mt-2">c.mendoza@motorenergy.example.com</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Banner de cierre del PDF -->
+      <div class="bg-primary text-white p-6 rounded-lg shadow flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <div>
           <span class="font-heading font-extrabold text-lg tracking-wider text-white">MOTOR <span class="text-secondary">ENERGY</span></span>
-          <p class="text-xs text-gray-300">Liderando el desarrollo de la infraestructura energética del futuro.</p>
-          <p class="editable text-[10px] text-gray-400 leading-relaxed" id="doc-address" data-field="address">${data.contact.address}</p>
+          <p class="text-[10px] text-slate-300 mt-1">${lang === "zh" ? "引领未来绿色能源基础设施建设，共筑零碳未来。" : lang === "en" ? "Leading the development of the energy infrastructure of the future." : "Liderando el desarrollo de la infraestructura energética del futuro."}</p>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono">
-          <div class="space-y-1">
-            <span class="text-secondary block font-bold text-[9px] tracking-wider uppercase">Email</span>
-            <span class="editable text-white" id="doc-email" data-field="email">${data.contact.email}</span>
-          </div>
-          <div class="space-y-1">
-            <span class="text-secondary block font-bold text-[9px] tracking-wider uppercase">Teléfono</span>
-            <span class="editable text-white" id="doc-phone" data-field="phone">${data.contact.phone}</span>
-          </div>
-          <div class="space-y-1">
-            <span class="text-secondary block font-bold text-[9px] tracking-wider uppercase">Sitio Web</span>
-            <span class="editable text-white" id="doc-web" data-field="web">${data.contact.web}</span>
-          </div>
+        <div class="text-xs font-semibold text-slate-300">
+          LinkedIn • Twitter • Corporate Web
         </div>
+      </div>
+
+      <!-- Hidden Sync Block to prevent DOM lookup failures -->
+      <div style="display: none;">
+        <p id="doc-ctatext">${data.ctaText || ""}</p>
+        ${data.values.map((v) => `
+          <span id="val-title-${v.id}">${v.title}</span>
+          <span id="val-desc-${v.id}">${v.description}</span>
+        `).join("")}
+        ${data.timeline.map((item) => `
+          <span id="tl-title-${item.id}">${item.title}</span>
+          <span id="tl-desc-${item.id}">${item.description}</span>
+        `).join("")}
       </div>
     </section>
 

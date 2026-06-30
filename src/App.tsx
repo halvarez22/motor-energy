@@ -36,7 +36,7 @@ import { Tecnica } from "./components/Tecnica";
 import { Financiera } from "./components/Financiera";
 import { Legal } from "./components/Legal";
 import { Galeria } from "./components/Galeria";
-import { Cierre } from "./components/Cierre";
+import { Contacto } from "./components/Contacto";
 import { PrintPreviewModal } from "./components/PrintPreviewModal";
 
 export default function App() {
@@ -55,9 +55,9 @@ export default function App() {
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     try {
       const saved = localStorage.getItem("motor_energy_dark_mode");
-      return saved === "true";
+      return saved !== "false";
     } catch {
-      return false;
+      return true;
     }
   });
 
@@ -413,7 +413,7 @@ export default function App() {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3 }}
               >
-                <Cierre data={data} onChange={handleDataChange} isEditing={isEditing} language={language} />
+                <Contacto data={data} onChange={handleDataChange} isEditing={isEditing} language={language} />
               </motion.div>
             </div>
           </div>
